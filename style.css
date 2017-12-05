@@ -27,7 +27,7 @@ section {
     background: white;
     color: black;
     margin: 20px;
-    padding-left: 25px;
+    padding-left: 15px;
     height: 400px;
 }
 #boxes {
@@ -36,6 +36,7 @@ section {
     color: white;
     background: #555;
     padding: 20px;
+    margin-left: 20px;
     float: left;
     text-align: center;
 }
@@ -45,7 +46,7 @@ section {
     color: black;
     background: #aaa;
     text-align: center;
-    /* margin: 10px; */
+    margin-left: 20px;
 }
 #box2 {
     height: 50px;
@@ -53,7 +54,7 @@ section {
     color: black;
     background: #aaa;
     text-align: center;
-    /* margin: 10px; */
+    margin-left: 20px;
 }
 aside {
     float: right;
