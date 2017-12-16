@@ -2,25 +2,45 @@
 <html lang="en-us">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../reset.css">
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="../reset.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"crossorigin="anonymous">
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
     <title>Contact Me!</title>
 </head>
-<header>
-    <p id="title">Randolph Waddell</p>
-    <ul>
-
-        <li class="contact"><a href="../contact/index.html">Contact</a></li>
-        <li class="portfolio"><a href="../gallery/index.html">Portfolio</a></li>
-        <li class="about"><a href="../index.html">About</a></li>
-    </ul>
-</header>
 
 <body>
-
+        <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <p class="navbar-brand">Randolph Waddell</p>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active">
+                                <a href="../index.html">About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../gallery/index.html">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="../contact/index.html">Contact</a>
+                                <span class="sr-only">(current)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+    <div class="row">
+            <div class="col-md-1"></div>
+        <div class="col-md-10">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Contact Form</h3>
+                 </div>      
     <div id="article">
-        <h1 class="heading">Contact</h1>
         <div class="container">
             <!-- EVERYTHING BELOW ISNT REAL I DIDNT MAKE THIS ITS JUST A PLACEHOLDER -->
             <form action="/action_page.php">
@@ -47,17 +67,40 @@
             <!-- EVERYTHING ABOVE ISNT REAL I DIDNT MAKE THIS ITS JUST A PLACEHOLDER -->
           </div>
     </div>
-    <aside>
-        <div>
-            <p>Connect with me</p>
-            <a href="https://github.com/Dachampster/"><img class="github" src="https://image.flaticon.com/icons/png/512/25/25231.png"></a>
-            <a href="https://www.linkedin.com/in/randolph-waddell-3aba9a13b/"><img class="linkedin" src="https://imageog.flaticon.com/icons/png/512/34/34227.png"></a>
-            <a href="https://www.twitter.com/Dachampster"><img class="twitter" src="http://pngimg.com/uploads/twitter/twitter_PNG1.png?i=1\\\"></a>
+    </div>
+</div>
+    <div class="col-md-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+    <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Connect with me</h3>
+            </div>
+            <div class="panel-body">
+                    <a href="https://github.com/Dachampster/"><img class="github" src="https://image.flaticon.com/icons/png/512/25/25231.png"></a>
+                    <a href="https://www.linkedin.com/in/randolph-waddell-3aba9a13b/"><img class="linkedin" src="https://imageog.flaticon.com/icons/png/512/34/34227.png"></a>
+                    <a href="https://www.twitter.com/Dachampster"><img class="twitter" src="http://pngimg.com/uploads/twitter/twitter_PNG1.png?i=1\\\"></a>
+            </div>
         </div>
-    </aside>
-    <footer>
-        <p>Copyright 2017 Randolph Waddell</p>
-    </footer>
+    </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+            
+            
+                <div class="panel panel-default">
+                    <div class="panel-footer">
+                        <p>Copyright 2017 Randolph Waddell</p>
+                    </div>
+                </div>
+           
+            
+        </div>
+    </body>
 </body>
 <style>
 /* EVERYTHING BELOW DOESNT EXIST I DIDNT MAKE THIS ITS A PLACEHOLDER */
@@ -94,23 +137,36 @@ input[type=submit]:hover {
     padding: 20px;
 }
 /* EVERYTHING ABOVE DOESNT EXIST I DIDNT MAKE THIS ITS A PLACEHOLDER */
-    .about {
-        background: white;
+body {
+        background: #ece0ff;
+        padding-top: 150px;
+        font-family: 'Open Sans', sans-serif;
     }
-    .about:hover {
-        background: gold;
-    }
-    .portfolio {
-        background: white;
-    }
-    .portfolio:hover {
-        background: gold;
-    }
-    .contact {
-        background: hotpink;
-    }
-    .contact:hover {
-        background: hotpink;
-    }
+.panel-footer {
+    text-align: center;
+}
+.panel-title {
+    text-align: center;
+}
+ .github {
+    height: 50px;
+    width: 50px;
+    margin-left: 80px;
+    /* padding-left: 20px; */
+    /* margin-top: 20px; */
+}
+.linkedin {
+    height: 50px;
+    width: 50px;
+    margin-left: 50px;
+    /* margin-top: 20px; */
+}
+.twitter {
+    height: 50px;
+    width: 50px;
+    margin-left: 50px;
+    /* margin-top: 20px; */
+}
+/* TO DO LIST: PUT ALL THESE STYLES IN AN EXTERNAL SHEET */
 </style>
 </html>
