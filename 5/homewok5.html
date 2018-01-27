@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="game.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>What is the capital of Zimbabwe NO GOOGLING</h1>
+    <br>
+    <form class="one">
+        <input type="radio" name="choice" value="Gaborone"> Gaborone
+        <input type="radio" name="choice" id="correct" value="Harare"> Harare
+        <input type="radio" name="choice" value="Lagos"> Lagos
+        <input type="radio" name="choice" value="Maputo"> Maputo
+    </form>
+    <button id = "submit">submit</button>
+    <div id="images">
+       
+    </div>
+
+</body>
+<script>
+    function prize(result, message) {
+        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + result;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+
+        .done(function(response) {
+            console.log(response);
+            var imageUrl = response.data.image_original_url;
+            var correctIMG = $("<img>");
+            correctIMG.attr("src", imageUrl);
+            correctIMG.attr("alt", "you win");
+            correctIMG.attr("class", "gifs");
+            correctIMG.attr("width", 200);
+            //var t = document.createTextNode("Hello World");
+            $("#images").prepend(correctIMG);
+            console.log(message);
+            $("#gifs").text("<p>" + message + "</p>");
+        });
+    }
+
+    function submitAnswer() {
+        var radios = $('[name="choice"]');
+        var i = 0,
+        len = radios.length;
+        var checked = false;
+        var userAnswer;
+
+        for (; i < len; i++) {
+            if (radios[i].checked) {
+                checked = true;
+                userAnswer = radios[i].value;
+                console.log(userAnswer);
+                if (radios[i].id === "correct") {
+                    var correct = radios[i].value;
+                }
+            }
+        }
+        // Correct answer
+        if (userAnswer === correct) {
+            console.log("Answer is correct!");
+            var result = "celebrate";
+            
+            prize("celebrate", "you're winner!");
+        }
+        // no answer checked
+        else if (checked = false) {
+            console.log("Waiting!");
+            prize("frown");
+        }
+        // wrong answer checked
+        else {
+            console.log("Answer is wrong!");
+            
+            prize("disappointed", "failure");
+        }
+
+    }
+    //$("#submit").on("click", submitAnswer());
+    $( "#submit" ).click(function() {
+     submitAnswer();
+    });
+    // setInterval(function() {
+    //     submitAnswer();
+    // }, 3000);
+</script>
+<style>
+    #images {
+    position: relative;
+    text-align: center;
+    color: red;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+</style>
+</html>
