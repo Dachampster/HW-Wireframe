@@ -90,5 +90,8 @@ function checkAnswers()
     // if the class of the button checked is "correct", add 1 to score
     // if else, dont add anything to score.
     // your total percent score will be ((score / questions.length) x 100)
+    var perc = ((score / questions.length) * 100);
+    $("body").append("<h1>Time is up.</h1>");
+    $("body").append("<h1> You scored " + perc + "%");
 }
       
