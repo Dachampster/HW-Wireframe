@@ -37,7 +37,7 @@ $(document).ready(function () {
         
     }
 });
-
+var answerSheet = [];
 //build the quiz
 function buildQuizNode(qObj) {
     var quizNode = $("<div>");
@@ -47,6 +47,7 @@ function buildQuizNode(qObj) {
     qObj.a.forEach(element => {
         var ques = $("<input type='radio'/>");
         $(ques).addClass("options");
+        
         //line below doesnt do anything, and i feel incredibly dumb
         ques.text(element);
         //dev tools shows the radio element containing this text, but it doesnt display
@@ -59,8 +60,8 @@ function buildQuizNode(qObj) {
             $(ques).addClass("incorrect");
         }
         options.append(ques);
+        answerSheet.push(ques);
     });
-
     quizNode.append(options);
     $("#testsheet").append(quizNode);
 
@@ -86,11 +87,24 @@ function checkAnswers()
 {
     var score = 0;
     // missing code:
+    var answered = [];
     // for each radio button checked do this:
+    for (var i = 0; i < answerSheet.length; i++)
+    {
+        //below line fails.
+        var x = answerSheet[i].checked;
+        //we want to push all the checked answers into answered[]
+        if(x = true){
+            answered.push(answerSheet[i]);
+        }
+    }
     // if the class of the button checked is "correct", add 1 to score
+
     // if else, dont add anything to score.
+
     // your total percent score will be ((score / questions.length) x 100)
     var perc = ((score / questions.length) * 100);
+    //give the user their result
     $("body").append("<h1>Time is up.</h1>");
     $("body").append("<h1> You scored " + perc + "%");
 }
