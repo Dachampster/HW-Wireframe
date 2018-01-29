@@ -45,11 +45,11 @@ function buildQuizNode(qObj) {
     var options = $("<form>");
 
     qObj.a.forEach(element => {
-        var ques = $("<input type='radio'/>");
+        var ques = $("<input type='radio'/><span>");
         $(ques).addClass("options");
         
         //line below doesnt do anything, and i feel incredibly dumb
-        ques.text(element);
+        ques.append(element + "</span>");
         //dev tools shows the radio element containing this text, but it doesnt display
         //below code automatically marks an answer as the "right" one based on qObj
         //this means you can switch up or randomize the order of the answers
