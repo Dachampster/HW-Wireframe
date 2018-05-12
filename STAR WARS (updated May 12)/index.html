@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1>Star Wars</h1>
+        <p>Do you have the high ground? Or are you being torn apart? Find out.</p>
+    </div>
+    <div id="gametext" class="well">
+        <h1>Game Log</h1>
+    </div>
+    <div class="row">
+
+        <div class="col-xs-6">
+            <div id="herolist"></div>
+
+        </div>
+
+        <div class="col-xs-6">
+            <div id="villainlist"></div>
+
+        </div>
+
+    </div>
+
+</body>
+<script>
+    heroes = [
+        { name: "Obi-Wan", maxhp: "500", hp: "500", atk: "150", pic: "http://wegotthiscovered.com/wp-content/uploads/2018/01/Obi_Wan-1.jpg" },
+        { name: "Yoda", maxhp: "420", hp: "420", atk: "300", pic: "https://www.sideshowtoy.com/wp-content/uploads/2016/05/star-wars-yoda-sixth-scale-hot-toys-thumb-902738.jpg" },
+        { name: "Chewbacca", maxhp: "380", hp: "380", atk: "220", pic: "http://www.tomspinadesigns.com/wp-content/uploads/2017/05/Adam-Savage-chewbacca-mask-prop-1.jpg" }
+    ]
+    villains = [
+        { name: "Kylo-Ren", maxhp: "400", hp: "400", atk: "350", pic: "https://pbs.twimg.com/profile_images/943120162978500608/REjr3e94_400x400.jpg" },
+        { name: "Darth Vader", maxhp: "500", hp: "500", atk: "150", pic: "https://img.etimg.com/thumb/msid-62663677,width-643,imgsize-155888,resizemode-4/revealed-darth-vader-tops-the-greatest-villain-of-all-time-list.jpg" },
+        { name: "General Grevious", maxhp: "440", hp: "440", atk: "200", pic: "https://starwarsgaming.net/wp-content/uploads/2017/11/Grievous.jpg" }
+    ]
+    function drawGame() {
+        $("#herolist").empty();
+        for (var i = 0; i < heroes.length; i++) {
+            var element = heroes[i];
+            $("#herolist").append("<h1 id = '" + i + "'class = 'hero' >" + element.name + "</h1>");
+            if (element.hp > 0) {
+                $("#herolist").append('<img class = "hero" src="' + element.pic + '" alt="jedi" height="300" >');
+            }
+            $("#herolist").append("<div class='progress'><div class='progress-bar progress-bar-success' style='width: " + Math.floor((element.hp / element.maxhp) * 100) + "%'><span class='sr-only'>Health</span></div></div>")
+        }
+
+        $("#villainlist").empty();
+        for (var x = 0; x < villains.length; x++) {
+            var element = villains[x];
+            $("#villainlist").append("<h1 id = '" + x + "'class = 'villain'>" + element.name + "</h1>");
+            if (element.hp > 0) {
+                $("#villainlist").append('<img class = "hero" src="' + element.pic + '" alt="sith" height="300">');
+            }
+            $("#villainlist").append("<div class='progress'><div class='progress-bar progress-bar-danger' style='width: " + Math.floor((element.hp / element.maxhp) * 100) + "%'><span class='sr-only'>Health</span></div></div>")
+        }
+    }
+    drawGame();
+    var player = { selected: false, hero: null };
+    $('#herolist').on('click', '.hero', function (event) {
+        $(".hero").removeClass("selected");
+        if (heroes[$(this).attr("id")].hp > 0) {
+            $(this).addClass("selected");
+            player.selected = true;
+            player.hero = heroes[$(this).attr("id")];
+            console.log(player);
+            $("#gametext").append("<p>" + $(this).text() + " is selected.</p>");
+        }
+        else {
+            $("#gametext").append("<p> theyre dead. choose someone else</p>");
+        }
+    })
+
+    $('#villainlist').on('click', '.villain', function (event) {
+        if (player.selected) {
+
+            $("#gametext").append("<p><span>" + player.hero.name + " attacked " + $(this).text() + "! </span>");
+            $("#gametext").append("<span>" + player.hero.name + " dealt " + player.hero.atk + " damage! </span></p>");
+            villains[$(this).attr("id")].hp -= player.hero.atk;
+
+            if (villains[$(this).attr("id")].hp > 0) {
+                $("#gametext").append("<p><span>" + $(this).text() + " struck back! </span>");
+                $("#gametext").append("<span>" + $(this).text() + " dealt " + villains[$(this).attr("id")].atk + " damage! </span></p>");
+                player.hero.hp -= villains[$(this).attr("id")].atk;
+
+            }
+
+            drawGame();
+        }
+        else {
+            $("#gametext").append("<p>Please select an attacker first.</p>");
+        }
+    })
+</script>
+<style>
+    .selected {
+        background-color: lightseagreen;
+    }
+
+    #gametext {
+        background-color: lightgray;
+        font-family: 'Courier New', Courier, monospace;
+        color: gray;
+    }
+</style>
+
+</html>
